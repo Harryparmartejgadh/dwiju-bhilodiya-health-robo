@@ -8,6 +8,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: No-loss source and route regression gate
+        env:
+          NO_LOSS_SCOPE: 'data/'
+        run: node scripts/no-loss-gate.mjs
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
